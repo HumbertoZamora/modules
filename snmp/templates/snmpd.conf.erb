@@ -1,8 +1,8 @@
 # Agrear: -%> (guion medio -) al interpretar el template no se interŕeten com lineas vacias
 
-<% $syscontact = 'Humberto Zamora <humber_zam@yahoo.com.mx>' -%>
-<% $community  = 'puppet' -%>
-<% $server     = '127.0.0.1' -%>
+<% $syscontact = scope.lookupvar('snmp::syscontact') -%>
+<% $community  = scope.lookupvar('snmp::community') -%>
+<% $server     = scope.lookupvar('snmp::server') -%>
 
 syscontact  <%= $syscontact %>
 rocommunity <%= $community %> <%= $server %>

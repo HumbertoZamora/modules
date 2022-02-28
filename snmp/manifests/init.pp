@@ -1,30 +1,17 @@
 
-class snmp {
+class snmp (
 
-  Package['snmp'] -> File['snmpd.conf'] ~> Service['snmp']
-
-  $package    = 'net-snmp'
-  $configfile = '/etc/snmp/snmpd.conf'
-  $service    = 'snmpd'
-
-  package { 'snmp':
-    ensure => installed,
-    name   => "${package}",
-  }
-
-# Agregar la linea: content => template('snmp/snmpd.conf'), hace que puppet busque en la carpeta: template.
-  file { 'snmpd.conf':
-    ensure  => file,
-    owner   => root,
-    group   => root,
-    mode    => '0444',
-    content => template('snmp/snmpd.conf.erb'),
-    path    => "${configfile}",
-  }
-
-  service { 'snmp':
-    ensure => running,
-    name   => "${service}",
-  }
+  $package = 'net-snmp',
+  $service = 'snmpd',
+  $configfile = '/etc/snmp/snmpd.conf',
+  $community = 'puppet',
+  $syscontact = 'Humberto Zamora <humber_zam@yahoo.com.mx>',
+  $server = '127.0.0.1',
+)
+{
+  include snmp::params
+  include snmp::install
+  include snmp::config
+  include snmp::service
 
 }
