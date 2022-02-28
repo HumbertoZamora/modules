@@ -4,7 +4,7 @@ class elasticsearch (
   $service_name  = 'elasticsearch',
   $config_dir    = '/etc/elasticsearch',
   $external_repo = true,
-  $base_usr      = 'http://package.elastic.co/elasticsearch/2.0/centos',
+  $base_usr      = 'https://artifacts.elastic.co/packages/8.x/yum',
   $dependencies  = ['java-1.8.0-openjdk'], #Array de dependencias.
   $cluster_name  = 'elasticsearch',
   $network_host  = 'puppet',
